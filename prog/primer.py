@@ -4,7 +4,6 @@
 import argparse
 import json
 import os.path
-import sys
 from datetime import date
 
 

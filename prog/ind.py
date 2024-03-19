@@ -31,9 +31,9 @@ def display_products(workers):
             print(
                 "| {:>4} | {:<30} | {:<20} | {:>10} |".format(
                     idx,
-                    worker.get("name_of_product", ""),
-                    worker.get("name_of_market", ""),
-                    worker.get("value", 0),
+                    worker.get("name", ""),
+                    worker.get("market", ""),
+                    worker.get("count", 0),
                 )
             )
         print(line)
@@ -95,12 +95,12 @@ def main():
     )
 
     info = subparsers.add_parser(
-        "info", parents=[file_parser], help="Select the workers"
+        "info", parents=[file_parser], help="Select the products"
     )
 
     info.add_argument(
-        "-nm",
-        "--nm",
+        "-p",
+        "--name_product",
         action="store",
         type=str,
         required=True,
@@ -123,7 +123,7 @@ def main():
     elif args.command == "display":
         display_products(products)
     elif args.command == "info":
-        selected = select_products(products, args.period)
+        selected = select_products(products, args.name_product)
         display_products(selected)
 
     if is_dirty:

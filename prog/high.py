@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import click
 import json
+
+import click
 
 
 @click.group()
@@ -11,10 +12,10 @@ def commands():
 
 
 @commands.command("add")
-@click.argument('filename')
-@click.option('--product_name', help="Name of product")
-@click.option('--market_name', help="Name of market")
-@click.option('--value', default=1, help="Value of product")
+@click.argument("filename")
+@click.option("--product_name", help="Name of product")
+@click.option("--market_name", help="Name of market")
+@click.option("--value", default=1, help="Value of product")
 def add(filename, product_name, market_name, value):
     """
     Добавить данные о работнике.
@@ -30,7 +31,7 @@ def add(filename, product_name, market_name, value):
 
 
 @commands.command("display")
-@click.argument('filename')
+@click.argument("filename")
 def display_products(filename):
     """
     Отобразить список работников.
@@ -106,10 +107,10 @@ def save_products(file_name, staff):
 
 
 @commands.command("select")
-@click.argument('filename')
-@click.argument('two_filename')
-@click.argument('name')
-def select(filename,two_filename, name):
+@click.argument("filename")
+@click.argument("two_filename")
+@click.argument("name")
+def select(filename, two_filename, name):
     """
     Выбрать продукт с заданным именем.
     """
@@ -118,13 +119,13 @@ def select(filename,two_filename, name):
     for product in products:
         if product.get("product_name") == name:
             result.append(product)
-            
+
     save_products(two_filename, result)
     display_products(two_filename)
 
 
 def main():
-    
+
     commands()
 
 
